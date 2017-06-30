@@ -1,4 +1,4 @@
-package algorithms.minspanningtree;
+package datastructures.edges;
 
 /**
  * An object that represents a weighted edge, which 
@@ -37,6 +37,14 @@ public class WeightedEdge implements Comparable<WeightedEdge> {
 	}
 	
 	/**
+	 * Compute the initial vertex, v
+	 * @return v, the starting vertex
+	 */
+	public int from() {
+		return v;
+	}
+	
+	/**
 	 * Get the other end of the edge
 	 * @param i one end of the edge
 	 * @return the other vertex
@@ -48,6 +56,14 @@ public class WeightedEdge implements Comparable<WeightedEdge> {
 		if (i == w) return v;
 		throw new IllegalArgumentException(i + " is not one of the edges in edge " + v + 
 				" -> " + w + " of weight " + weight);
+	}
+	
+	/**
+	 * Compute the sink vertex, w
+	 * @return w, the target vertex
+	 */
+	public int to() {
+		return w;
 	}
 	
 	/**
