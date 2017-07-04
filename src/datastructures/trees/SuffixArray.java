@@ -1,7 +1,6 @@
 package datastructures.trees;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * An algorithm to compute the array of suffixes that
@@ -28,18 +27,13 @@ public class SuffixArray {
 		Tuple[] L = new Tuple[N];
 		Tuple[] L_p;
 		
-		for (int i = 0; i < N; i++) 
+		for (int i = 0; i < N; i++) {
 			L[i] = new Tuple(i);
-		Arrays.sort(L, new Comparator<Tuple>() {
-			@Override
-			public int compare(Tuple phi, Tuple psi) {
-				return S.charAt(phi.index) - S.charAt(psi.index);
-			}
-		});
-		L[0].arr[1] = 0;
-		for (int i = 1; i < N; i++) 
-			L[i].arr[1] = L[i - 1].arr[1] + (S.charAt(L[i].index) == S.charAt(L[i - 1].index) ? 0 : 1);
-		for (int step = 1; step < N; step *= 2, L = L_p) {
+			L[i].arr[0] = S.charAt(i) - 'a';
+			L[i].arr[1] = i + 1 < N ? S.charAt(i + 1) - 'a': -1;
+		}
+		Arrays.sort(L);
+		for (int step = 2; step < N / 2; step *= 2, L = L_p) {
 			L_p = new Tuple[N];
 			L[0].sortIndex = 0;
 			for (int i = 1; i < N; i++) 
@@ -55,6 +49,9 @@ public class SuffixArray {
 		arr = new int[N];
 		for (int i = 0; i < N; i++) 
 			arr[i] = L[i].index;
+		for (int i : arr) {
+			System.out.println(S.substring(i));
+		}
 	}
 	
 	/**
@@ -105,5 +102,9 @@ public class SuffixArray {
 				return cmp1;
 			return arr[1] - that.arr[1];
 		}
+	}
+	
+	public static void main(String[] args) {
+		SuffixArray suffixArray = new SuffixArray("bbbaaaababaabaababab");
 	}
 }
