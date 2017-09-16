@@ -47,6 +47,6 @@ public class Booth {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(lcs("alabala"));
+		System.out.println(lcs("interestingzzz"));
 	}
 }
