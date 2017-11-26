@@ -20,7 +20,6 @@ public class EuclidGCD {
 			return GCD(b, a);
 		if (b == 0)
 			return a;
-		else
-			return GCD(b, a % b);
+		return GCD(b, a % b);
 	}
 }
